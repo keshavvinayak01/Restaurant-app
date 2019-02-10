@@ -21,7 +21,9 @@
 .App-link {
   color: #61dafb;
 }
-
+.selected{
+  overflow-x : hidden!important;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -95,4 +97,7 @@ address{
 
 .item > *{
   margin-left:10px;
+}
+.fa-sign-in{
+  /*margin-left:43%;*/
 }

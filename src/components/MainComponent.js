@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import Menu from './MenuComponent';
 import Home from './HomeComponent'
 import '../App.css'
-import { dishes } from '../shared/dishes';
-import { comments } from '../shared/comments';
-import { leaders } from '../shared/leaders';
-import { promotions } from '../shared/promotions';
+
 import DishDetail from './DishDetailComponent';
 import Contact from './ContactComponent'
 import Header from './HeaderComponent';

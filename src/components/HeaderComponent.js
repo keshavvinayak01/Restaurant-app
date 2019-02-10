@@ -3,6 +3,7 @@ import { Navbar,NavbarBrand,Nav,NavbarToggler,Collapse,NavItem, Jumbotron ,
 Modal,ModalHeader,ModalBody,Form,FormGroup,Input,Button,Label} from 'reactstrap';
 import '../App.css'
 import {NavLink} from 'react-router-dom';
+
 class Header extends Component{
 	constructor(props){
 		super(props);
