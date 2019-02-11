@@ -4,7 +4,7 @@ import { Card,CardImg,CardBody,CardText,CardTitle
 import {Control,LocalForm,Errors} from 'react-redux-form';
 import { Link } from 'react-router-dom';
 import '../App.css';
-
+import { Loading } from './LoadingComponent'
 // Validators for form
 	function RenderDish({dish,comments}){
 		if (dish != null) {
@@ -25,9 +25,7 @@ import '../App.css';
 				</div>
 				<div className = "col-12 col-md-5 mt-1">
 				<Card>
-				<RenderComments comments={comments} 
-				addComment = {props.addComment}
-				dishId={props.dish.id} />
+				<RenderComments comments={comments} />
 				</Card>
 				</div>
 				</div>
@@ -39,7 +37,7 @@ import '../App.css';
 				);
 		}
 	}
-	function RenderComments({comments,addComment,dishId}){
+	function RenderComments({comments}){
 		if(comments.length){
 			const comments_render = comments.map((comment) => {
 				return (
@@ -66,6 +64,27 @@ import '../App.css';
 	}
 
 const DishDetail = (props) =>{
+		if (props.isLoading){
+			return(
+				<div className="container">
+					<div className="row">
+						<Loading />
+					</div>
+				</div>
+
+				);
+		}
+		else if(props.errMess){
+			return(
+				<div className="container">
+					<div className="row">
+						<h4>{props.errMess}</h4>
+					</div>
+				</div>
+
+				);
+		}
+		else if(props.dish != null)
 		return(
 			<div>
 			<div className="row item">
@@ -78,10 +97,12 @@ const DishDetail = (props) =>{
                         <hr />
                     </div>                
                 </div>
-			<RenderDish dish={props.dish} comments= {props.comments}/>
-			<CommentForm dishId={dishId} addComment={addComment} />
+			<RenderDish dish={props.dish} comments= {props.comments} />
+			<CommentForm dishId={props.dish.id} addComment={props.addComment} />
 			</div>
 			);
+		else
+			return ( <div></div>);
 	}
 
 export default DishDetail;
@@ -100,7 +121,7 @@ class CommentForm extends Component{
 	
 	handleSubmit(values) {
         this.toggleModal();
-        this.props.addComment(this.props.dishId,values.rating,values.author,values.comment);
+		this.props.addComment(this.props.dishId,values.rating,values.author,values.comment);
     }
 	toggleModal(){
 		this.setState({
