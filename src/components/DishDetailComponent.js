@@ -4,7 +4,8 @@ import { Card,CardImg,CardBody,CardText,CardTitle
 import {Control,LocalForm,Errors} from 'react-redux-form';
 import { Link } from 'react-router-dom';
 import '../App.css';
-import { Loading } from './LoadingComponent'
+import { Loading } from './LoadingComponent';
+import { baseUrl } from '.../shared/baseUrl'
 // Validators for form
 	function RenderDish({dish,comments}){
 		if (dish != null) {
@@ -12,7 +13,7 @@ import { Loading } from './LoadingComponent'
 				<div className= 'selected'>
 				<div className = "col-12 col-md-5 mt-1 image">
 				<Card>
-					<CardImg object src = {dish.image} alt = {dish.name} />
+					<CardImg object src = {baseUrl + dish.image} alt = {dish.name} />
 					<CardBody>
 						<CardTitle>
 							{dish.name}
@@ -98,7 +99,7 @@ const DishDetail = (props) =>{
                     </div>                
                 </div>
 			<RenderDish dish={props.dish} comments= {props.comments} />
-			<CommentForm dishId={props.dish.id} addComment={props.addComment} />
+			<CommentForm dishId={props.dish.id} postComment={props.postComment} />
 			</div>
 			);
 		else
@@ -121,7 +122,7 @@ class CommentForm extends Component{
 	
 	handleSubmit(values) {
         this.toggleModal();
-		this.props.addComment(this.props.dishId,values.rating,values.author,values.comment);
+		this.props.postComment(this.props.dishId,values.rating,values.author,values.comment);
     }
 	toggleModal(){
 		this.setState({
