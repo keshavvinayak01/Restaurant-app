@@ -22,9 +22,9 @@ const mapStateToProps = state => {
   }
   const mapDispatchToProps = (dispatch) => ({
   postComment : (dishId,rating,author,comment) => dispatch(postComment(dishId,rating,author,comment)),
-  fetchDishes : () => {dispatch(fetchDishes())}
-  resetFeedbackForm : () => {dispatch(actions.reset('feedback'))}
-  fetchComments : () => {dispatch(fetchComments())}
+  fetchDishes : () => {dispatch(fetchDishes())},
+  resetFeedbackForm : () => {dispatch(actions.reset('feedback'))},
+  fetchComments : () => {dispatch(fetchComments())},
   fetchPromos : () => {dispatch(fetchPromos())}
   });
 
