@@ -5,7 +5,7 @@ import {Control,LocalForm,Errors} from 'react-redux-form';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import { Loading } from './LoadingComponent';
-import { baseUrl } from '.../shared/baseUrl';
+import { baseUrl } from '../shared/baseUrl';
 import {FadeTransform,Fade,Stagger} from 'react-animation-components';
 // Validators for form
 	function RenderDish({dish,comments}){
@@ -62,11 +62,12 @@ import {FadeTransform,Fade,Stagger} from 'react-animation-components';
 			return(
 				<div className="comments">
 				<h4>Comments</h4>
-				<Stagger in>
+				
 				<ul className = "list-unstyled">
+				<Stagger in>
 				{comments_render}
-				</ul>
 				</Stagger>
+				</ul>
 				</div>
 				)
 		}
@@ -169,11 +170,11 @@ render(){
                             </Col> 
                         </Row>
                         <Row className="form-group">
-                            <Label for="name" md={2}>Your Name</Label>
+                            <Label for="author" md={2}>Your Name</Label>
                             <Col md={10}>
-                                <Control.text model=".name" id="name" name="name" 
+                                <Control.text model=".author" id="author" name="author" 
                                  placeholder="Kimi no nawa" 
-                                value={this.state.name}
+                                value={this.state.author}
                                 className="form-control"
                                 validators={{
                                     minLength:minLength(3),maxLength:maxLength(25)
@@ -195,7 +196,7 @@ render(){
                                 <Control.textarea model=".comment" id="comment" 
                                  name="comment"
                                  rows = "8" 
-                                 className="form-control"
+				className="form-control "
                                  value={this.state.comment}
                                  />
                             </Col>

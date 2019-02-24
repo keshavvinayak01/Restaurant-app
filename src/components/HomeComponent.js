@@ -4,19 +4,20 @@ import { Card, CardImg, CardText, CardBody,
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 import { FadeTransform } from 'react-animation-components';
-function RenderCard({item,isLoading,errMess}) {
+function RenderCard({item,isLoading,errMess}) { 
     if(isLoading){
         return(
             <Loading />
 
-            )
+            );
     }
     else if(errMess){
         return(
                 <h4>{errMess}</h4>
             );
     }
-    else
+    else {
+    console.log(item,item.name);
         return(
             <FadeTransform in 
                 transformProps = {{
@@ -32,9 +33,8 @@ function RenderCard({item,isLoading,errMess}) {
                 </Card>
             </FadeTransform>
         );
-
+            }
 }
-
 function Home(props) {
     return(
         <div className="container">
@@ -47,15 +47,17 @@ function Home(props) {
                 <div className="col-12 col-md m-1">
                     <RenderCard item={props.promotion} 
                     isLoading={props.promosLoading}
-                    errMess = {props.promosErrMess}/>
+                    errMess = {props.promosErrMess}
+                    />
                 </div>
                 <div className="col-12 col-md m-1">
-                    <RenderCard item={props.leader} 
+                    <RenderCard item={props.leader}
+                    isLoading={props.leadersLoading}
+                    errMess = {props.leadersErrMess} 
                     />
                 </div>
             </div>
         </div>
     );
 }
-
 export default Home;

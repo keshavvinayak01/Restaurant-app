@@ -1,6 +1,9 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
+import {Stagger,Fade} from 'react-animation-components';
 import '../App.css'
 function About(props) {
     return(
@@ -59,20 +62,26 @@ function About(props) {
                 </div>
                 <div className="col-12">
                     <Media list>
-                        <RenderLeader leaders = {props.leaders} />
+                        <RenderLeader leaders = {props.leaders}
+                        isLoading = {props.isLoading}
+                        errMess = {props.errMess} />
                     </Media>
                 </div>
             </div>
         </div>
     );
 }
-function RenderLeader(leaders){
-    const leaders_list = (leaders.leaders).map((leader) => {
+function RenderLeader(props){
+    // console.log("Here is a leader \n");
+    // console.log(leaders);
+    const leaders_list = props.leaders.map((leader) => {
         return(
-            <div className="leader-list"> 
+            
+            <Fade in>
+            <li>
         <Media>
           <Media left href="#">
-                <Media object src={leader.image} alt="Generic placeholder image" />
+                <Media object src={baseUrl + leader.image} alt="Generic placeholder image" />
               </Media>
               <Media body>
                 <Media heading>
@@ -82,11 +91,33 @@ function RenderLeader(leaders){
                 <p>{leader.description}</p>
           </Media>
     </Media>
-    </div>
+    </li>
+    </Fade>
         );
     });
+    if (props.isLoading){
+			return(
+				<div className="container">
+					<div className="row">
+						<Loading />
+					</div>
+				</div>
+
+				);
+		}
+		else if(props.errMess){
+			return(
+				<div className="container">
+					<div className="row">
+						<h4>{props.errMess}</h4>
+					</div>
+				</div>
+
+				);
+        }
+        else
     return(
-        <>{leaders_list}</>
+        <ul className="leader-list"><Stagger in>{leaders_list}</Stagger></ul>
         );
 
 }

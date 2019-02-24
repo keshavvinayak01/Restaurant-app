@@ -1,4 +1,3 @@
-import { comments } from '../shared/comments';
 import * as ActionTypes from './ActionTypes';
 
 export const comments = (state = {
@@ -16,7 +15,7 @@ export const comments = (state = {
 
 		case ActionTypes.ADD_COMMENT:
 			var comment = action.payload;
-			return {...state,comments:state.comments.concat(comment))};
+			return {...state,comments:state.comments.concat(comment)};
 		
 		default: 
 		return state;
